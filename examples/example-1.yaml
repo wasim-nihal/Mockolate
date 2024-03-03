@@ -1,0 +1,24 @@
+endpoints:
+  /hello:
+    -  method: GET
+       content: text/plain
+       body: Hello, World! (GET)
+       status: 200
+    -  method: POST
+       content: text/plain
+       body: Hello, World! (POST)
+       status: 200
+  /bye:
+    -  method: GET
+       content: text/plain
+       body: Goodbye!
+       status: 400
+
+## WIP (currently not available)
+# fileServer:
+#   enable:
+#   serverDirectory:
+#   serverFiles:
+#     -
+#     -
+#     -
