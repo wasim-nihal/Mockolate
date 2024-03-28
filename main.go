@@ -21,9 +21,9 @@ func main() {
 	}
 	http.HandleFunc("/", mockServer.Handler)
 	http.HandleFunc("/metrics", httpserver.MetricsHandler().ServeHTTP)
-	// Start the mock server on port 8080
+	// Start the mock server
 	log.Printf("Mock server is running on port %s...", *port)
-	ln, err := httpserver.GetListener(fmt.Sprintf("127.0.0.1:%s", *port))
+	ln, err := httpserver.GetListener(fmt.Sprintf("0.0.0.0:%s", *port))
 	if err != nil {
 		log.Fatal(err)
 	}
