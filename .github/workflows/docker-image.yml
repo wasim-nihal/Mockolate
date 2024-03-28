@@ -14,5 +14,6 @@ jobs:
         docker build . -t nihalwasim/mock-http-server:latest
     - name: Publish
       run: |
+        docker login -u nihalwasim -p ${{ secrets.DOCKER_HUB }}
         docker push nihalwasim/mock-http-server:latest
 
