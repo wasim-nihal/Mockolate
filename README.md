@@ -82,6 +82,70 @@ endpoints:
   - ...
 ```
 
+## Running in k8s environment
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mock-server-pod
+  labels:
+    app: mock-server
+spec:
+  containers:
+  - name: mock-server-container
+    image: nihalwasim/mock-http-server:latest
+    imagePullPolicy: IfNotPresent
+    ports:
+    - containerPort: 8080
+    command: ["/mock-server"]
+    args:
+    - "--server.config=/etc/config/server.yaml"
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/config
+      readOnly: true
+  volumes:
+  - name: config-volume
+    configMap:
+      name: my-configmap
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  server.yaml: |
+    endpoints:
+      /hello:
+        -  method: GET
+           content: text/plain
+           body: Hello, World! (GET)
+           status: 200
+        -  method: POST
+           content: text/plain
+           body: Hello, World! (POST)
+           status: 200
+      /bye:
+        -  method: GET
+           content: text/plain
+           body: Goodbye!
+           status: 400
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mock-server-service
+spec:
+  selector:
+    app: mock-server
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+```
+
 ## License
 This project is licensed under the Apache-2.0 license License. See the [LICENSE](https://github.com/wasim-nihal/mock-http-server/blob/master/LICENSE) file for details.
 
