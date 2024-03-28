@@ -1,8 +1,4 @@
 # Mock HTTP Server
-<div style="text-align:center;">
-  <img src="img/gopher.png" width="400" alt="mock-http-server">
-</div>
-
 This repository provides a Golang implementation of a mock HTTP server that allows you to easily define and manage mock endpoints through a configuration YAML file. It also offers various command-line flags for additional configuration.
 
 ## Features
