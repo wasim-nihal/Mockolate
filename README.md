@@ -1,4 +1,4 @@
-# Mock HTTP Server
+# Mockolate
 This repository provides a Golang implementation of a mock HTTP server that allows you to easily define and manage mock endpoints through a configuration YAML file. It also offers various command-line flags for additional configuration.
 
 ## Features
